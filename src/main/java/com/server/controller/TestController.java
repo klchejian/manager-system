@@ -22,7 +22,7 @@ public class TestController{
 	public String testMethod(){
 		logger.info("start TestMethod");
 		System.out.println("start TestMethod");
-		testService.testFuc();
+		testService.ResourceTest();
 		return "test";
 	}
 }
