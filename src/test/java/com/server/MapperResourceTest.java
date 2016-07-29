@@ -2,6 +2,8 @@ package com.server;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Constructor;
+
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.SqlSession;
@@ -39,7 +41,7 @@ public class MapperResourceTest {
 
 	@Test
 	public void test() {
-		Student student = new Student(null ,"lisinopril",11);
+//		Student student = new Student(null ,"lisinopril",11);
 //		int result = testMapper.add(student);
 //		if(result>0){
 //			logger.info("success insert items:"+result+" ---studentid="+student.getStudentid());
@@ -50,12 +52,22 @@ public class MapperResourceTest {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		testService.ResourceTest();
+//		testService.ResourceTest();
 	}
 	
 	@Test
-	public void test2(){
-//		System.out.println("testg2");
+	public void test2() throws Exception{
+//		Student student = new Student();
+		Class<?> cls = Class.forName("com.server.model.Student");
+//		System.out.println(cls.getName());
+		Object obj = cls.newInstance();
+		Student student = (Student)obj;
+		System.out.println("student.getName():"+student.getName()+"---student.getAge()"+student.getAge()+"---student.getStudentid()"+student.getStudentid());
+		
+		Constructor<?> cons[] = cls.getConstructors();
+		for(Constructor<?> con:cons){
+			System.out.println(con);
+		}
 	}
 
 }

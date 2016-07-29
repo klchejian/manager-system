@@ -20,9 +20,9 @@ public class TestController{
 	
 	@RequestMapping("/test")
 	public String testMethod(){
-		logger.info("start TestMethod");
-		System.out.println("start TestMethod");
-		testService.ResourceTest();
+//		logger.info("start TestMethod");
+//		System.out.println("start TestMethod");
+		testService.ResourceTest("inputArg");
 		return "test";
 	}
 }

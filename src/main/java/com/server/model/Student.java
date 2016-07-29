@@ -9,6 +9,11 @@ public class Student {
 	
 
 
+	public Student() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Student(Integer studentid, String name, Integer age) {
 		super();
 		this.studentid = studentid;
