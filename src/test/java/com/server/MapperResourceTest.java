@@ -34,7 +34,6 @@ public class MapperResourceTest {
 
 	@After
 	public void vAfter() {
-		
 //		sqlSession.commit();
 	}
 
