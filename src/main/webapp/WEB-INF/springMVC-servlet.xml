@@ -5,6 +5,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
       http://www.springframework.org/schema/context
@@ -12,7 +13,9 @@
       http://www.springframework.org/schema/mvc
       http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
       http://www.springframework.org/schema/aop
-      http://www.springframework.org/schema/aop/spring-aop.xsd">
+      http://www.springframework.org/schema/aop/spring-aop.xsd
+      http://www.springframework.org/schema/tx
+      http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<context:component-scan base-package="com.server" />
 	<mvc:annotation-driven />
@@ -75,9 +78,27 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
+	<!-- 配置事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>	
+
+	
+	<!-- 配置事务切面 -->
+	<aop:config>
+		<!-- 配置切点 -->
+		<aop:pointcut expression="execution(* com.server.service.*.*(..))" id="serviceMethod"/>
+		<!-- 配置事务通知 -->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+	</aop:config>
+	
+	
 	<bean id="transactionTemplate" class="org.springframework.transaction.support.TransactionTemplate">
 		<property name="transactionManager" ref="transactionManager"></property>
 	</bean>
+	
 	
 	<!--  
 	<mvc:interceptors>

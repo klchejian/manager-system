@@ -35,7 +35,7 @@ public class TestService {
 	}
 	
 	public  void ResourceTest(String str){
-		//编程式事务实现
+	/*	//编程式事务实现
 		transactionTemplate.execute(new TransactionCallbackWithoutResult() {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus arg0) {
@@ -46,9 +46,13 @@ public class TestService {
 				Student student1 = new Student(34, "chejian", 50);
 				testMapper.addAge(student1);
 			}
-		});
+		});*/
+		System.out.println("testService ResourceTest");
+		Student student0=  new Student(35, "chejian", 50);
+		testMapper.subAge(student0);
+		Student student1 = new Student(34, "chejian", 50);
+		testMapper.addAge(student1);
 		
-//		System.out.println(student.getStudentid());
 		
 	}
 }
