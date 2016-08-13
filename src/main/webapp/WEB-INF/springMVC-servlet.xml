@@ -33,8 +33,23 @@
 	</aop:config>
 
 	<!-- <mvc:resources mapping="/statics/**" location="/statics/" />
-	<mvc:resources mapping="/upload/**" location="/upload/" />  -->
+	<mvc:resources mapping="/upload/" location="/upload/" />  -->
+	
+	<!-- <mvc:resources mapping="/WEB-INF/resource/assets/**" location="/WEB-INF/resource/assets/" />
+	<mvc:resources mapping="/WEB-INF/resource/Css/**" location="/WEB-INF/resource/Css/" />
+	<mvc:resources mapping="/WEB-INF/resource/front/**" location="/WEB-INF/resource/front/" />
+	<mvc:resources mapping="/WEB-INF/resource/Images/**" location="/WEB-INF/resource/Images/" />
+	<mvc:resources mapping="/WEB-INF/resource/Js/**" location="/WEB-INF/resource/Js/" /> -->
+	
+	<mvc:resources mapping="/assets/**" location="/WEB-INF/resource/assets/" />
+	<mvc:resources mapping="/Css/**" location="/WEB-INF/resource/Css/" />
+	<mvc:resources mapping="/front/**" location="/WEB-INF/resource/front/" />
+	<mvc:resources mapping="/Images/**" location="/WEB-INF/resource/Images/" />
+	<mvc:resources mapping="/Js/**" location="/WEB-INF/resource/Js/" />
+	
+	<!-- <mvc:resources location="/" mapping="/**"/> -->
 	<mvc:resources location="/" mapping="/*.jsp"/>
+	<!-- <mvc:resources location="/" mapping="/*.html"/> -->
 
 
  <context:property-placeholder location="classpath:jdbc.properties"/>

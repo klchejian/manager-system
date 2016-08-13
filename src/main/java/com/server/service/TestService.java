@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import com.server.mappers.TestMapper;
-import com.server.model.Student;
 
 @Transactional
 @Service("testService")
@@ -48,11 +47,11 @@ public class TestService {
 				testMapper.addAge(student1);
 			}
 		});*/
-		System.out.println("testService ResourceTest");
-		Student student0=  new Student(35, "chejian", 50);
-		testMapper.subAge(student0);
-		Student student1 = new Student(34, "chejian", 50);
-		testMapper.addAge(student1);
+//		System.out.println("testService ResourceTest");
+//		Student student0=  new Student(35, "chejian", 50);
+//		testMapper.subAge(student0);
+//		Student student1 = new Student(34, "chejian", 50);
+//		testMapper.addAge(student1);
 		
 		
 	}

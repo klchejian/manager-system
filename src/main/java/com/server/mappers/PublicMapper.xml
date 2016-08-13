@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.mappers.PublicMapper">
+
+<select id="studentLogin" parameterType="com.server.model.Student" resultType="com.server.model.Student">
+	select * from  t_student where studentNum=#{studentNum} and passwd=#{passwd}
+</select>
+
+<select id="teacherLogin" parameterType="com.server.model.Teacher" resultType="com.server.model.Teacher">
+	select * from  t_teacher where userName=#{userName} and passwd=#{passwd}
+</select>
+
+<select id="adminLogin" parameterType="com.server.model.Admin" resultType="com.server.model.Admin">
+	select * from  t_admin where userName=#{userName} and passwd=#{passwd}
+</select>
+
+</mapper>

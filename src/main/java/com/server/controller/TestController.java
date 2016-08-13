@@ -1,6 +1,8 @@
 package com.server.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,10 +21,13 @@ public class TestController{
 	private TestService testService;
 	
 	@RequestMapping("/test")
-	public String testMethod(){
-//		logger.info("start TestMethod");
+	public String testMethod(HttpServletRequest request,HttpServletResponse response){
+		logger.info("start TestMethod");
 //		System.out.println("start TestMethod");
 		testService.ResourceTest("inputArg");
-		return "test";
+		
+		
+		return null;
+//		return "test";
 	}
 }

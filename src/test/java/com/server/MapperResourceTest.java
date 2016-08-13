@@ -1,21 +1,14 @@
 package com.server;
 
-import static org.junit.Assert.*;
-
-import java.lang.reflect.Constructor;
-
 import javax.annotation.Resource;
 
-import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.server.mappers.TestMapper;
-import com.server.model.Student;
 import com.server.service.TestService;
-import com.server.util.SqlSessionFactoryUtil;
 
 public class MapperResourceTest {
 	static Logger logger = Logger.getLogger(TestJunit.class);
@@ -57,17 +50,17 @@ public class MapperResourceTest {
 	
 	@Test
 	public void test2() throws Exception{
-//		Student student = new Student();
-		Class<?> cls = Class.forName("com.server.model.Student");
-//		System.out.println(cls.getName());
-		Object obj = cls.newInstance();
-		Student student = (Student)obj;
-		System.out.println("student.getName():"+student.getName()+"---student.getAge()"+student.getAge()+"---student.getStudentid()"+student.getStudentid());
-		
-		Constructor<?> cons[] = cls.getConstructors();
-		for(Constructor<?> con:cons){
-			System.out.println(con);
-		}
+////		Student student = new Student();
+//		Class<?> cls = Class.forName("com.server.model.Student");
+////		System.out.println(cls.getName());
+//		Object obj = cls.newInstance();
+//		Student student = (Student)obj;
+//		System.out.println("student.getName():"+student.getName()+"---student.getAge()"+student.getAge()+"---student.getStudentid()"+student.getStudentid());
+//		
+//		Constructor<?> cons[] = cls.getConstructors();
+//		for(Constructor<?> con:cons){
+//			System.out.println(con);
+//		}
 	}
 
 }
