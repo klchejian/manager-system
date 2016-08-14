@@ -52,15 +52,16 @@
 <table class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
-        <th>用户id</th>
-        <th>用户名称</th>
+        <th>序号</th>
+        <th>用户Id</th>
+        <th>用户账号</th>
         <th>真实姓名</th>
-        <th>最后登录时间</th>
+        <th>其他信息</th>
         <th>操作</th>
     </tr>
     </thead>
     
-	     <tr>
+	     <!-- <tr>
             <td>2</td>
             <td>admin</td>
             <td>管理员</td>
@@ -68,62 +69,34 @@
             <td>
                 <a href="edit.jsp">编辑</a>                
             </td>
-        </tr>	
+        </tr>	 -->
         
         <c:forEach var="user" items="${requestScope.userList}" varStatus="foo">
         <tr>
-        <td>${foo.index }</td>
+        <td>${foo.index+1 }</td>
+        <td>${user.userId }</td>
         <td>${user.userName }</td>
-        <td>${user.sex }</td>
-        <td>${user.major }</td>
+        <td>${user.nickName }</td>
+        <td>${user.major } ${user.address }</td>
         <td><a href="edit.jsp">编辑</a></td>
         </tr>
         </c:forEach>
-        <%-- <%
-        ArrayList<Student> list = (ArrayList<Student>)request.getAttribute("userList");
-        if(list!=null){
-        for(Student student:list){
-        	%>
-        	<tr>
-        	<td>1</td>
-        	<td>2</td>
-        	<td>3</td>
-        	<td>4</td>
-        	</tr>
-        	<% 
-        }
-        }
-        %> --%>
 </table>
 </body>
 </html>
 <script>
     $(function () {
-        
-
 		$('#addnew').click(function(){
-
 				window.location.href="add.jsp";
 		 });
-
-
     });
-
 	function del(id)
 	{
-		
-		
 		if(confirm("确定要删除吗？"))
 		{
-		
 			var url = "index.jsp";
-			
 			window.location.href=url;		
-		
 		}
-	
-	
-	
 	
 	}
 </script>

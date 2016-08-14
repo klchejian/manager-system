@@ -4,8 +4,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.server.mappers.UserMapper">
 
-<select id="selectStudent" parameterType="map" resultType="com.server.model.Student">
-	select * from t_student
+<select id="selectStudent" parameterType="map" resultType="map">
+	select idNumber as userId,studentNum as userName,userName as nickName,major,address from t_student
 	<where>
 		<if test=" str != null and str != '' ">
 			studentNum LIKE '%${str}%' or userName LIKE '%${str}%'
@@ -13,8 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</where>	 
 </select>
 
-<select id="selectTeacher" parameterType="map" resultType="com.server.model.Teacher">
-	select * from  t_teacher 
+<select id="selectTeacher" parameterType="map" resultType="map">
+	select teacherId as userId,userName,nickName from  t_teacher 
 	<where>
 		<if test=" str != null and str != '' ">
 			teacherId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'
@@ -22,8 +22,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</where>
 </select>
 
-<select id="selectAdmin" parameterType="com.server.model.Admin" resultType="com.server.model.Admin">
-	select * from  t_admin 
+<select id="selectAdmin" parameterType="map" resultType="map">
+	select adminId as userId,userName,nickName from  t_admin 
 	<where>
 		<if test=" str != null and str != '' ">
 			adminId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'

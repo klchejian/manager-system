@@ -48,9 +48,9 @@ public class UserController{
 		String status = request.getParameter("status");
 		System.out.println("str:"+str+" status:"+status);
 		
-		HashMap<String,String> map = userService.selectUser("stu");
+		ArrayList<HashMap<String, String>> map = userService.selectUser(str);
 		
-		System.out.println("模糊搜索student:"+map);
+		System.out.println("模糊搜索users:"+map);
 
 		
 		request.setAttribute("userList", map);

@@ -20,11 +20,13 @@ public class UserService {
 	@Resource
 	private UserMapper userMapper; 
 	
-	public  HashMap<String,String> selectUser(String str){
+	public  ArrayList<HashMap<String, String>> selectUser(String str){
 		HashMap<String,String> map = new HashMap<String, String>();
-		HashMap<String,String> resMap = new HashMap<String, String>();
 		map.put("str", str);
-		ArrayList<Student> students =userMapper.selectStudent(map);
-		return resMap;
+		ArrayList<HashMap<String, String>> userLists =userMapper.selectStudent(map);
+		userLists.addAll(userMapper.selectTeacher(map));
+		userLists.addAll(userMapper.selectAdmin(map));
+		
+		return userLists;
 	}
 }
