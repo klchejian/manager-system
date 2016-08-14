@@ -31,4 +31,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</where>
 </select>
 
+<insert id = "insertStudent" parameterType="Student">
+	insert into t_student values(#{studentNum},#{sex},#{userName},#{idNumber},#{major},#{address},#{passwd})
+</insert>
+
+<insert id = "insertTeacher" parameterType="Teacher">
+	insert into t_teacher values(#{teacherId},#{userName},#{passwd},#{nickName})
+</insert>
+
+<insert id = "insertAdmin" parameterType="Admin">
+	insert into t_admin values(#{adminId},#{userName},#{passwd},#{nickName})
+</insert>
+
 </mapper>

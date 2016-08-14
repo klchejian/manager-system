@@ -43,7 +43,7 @@ public class UserController{
 	
 	@RequestMapping("/searchUser")
 	public String searchUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		
+		request.setCharacterEncoding("utf-8"); 
 		String str = request.getParameter("str");
 		String status = request.getParameter("status");
 		System.out.println("str:"+str+" status:"+status);
@@ -54,6 +54,35 @@ public class UserController{
 
 		
 		request.setAttribute("userList", map);
+		return "index";
+	}
+	
+	@RequestMapping("/addUser")
+	public String addUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8"); 
+		String userName = request.getParameter("userName");
+		String passwd = request.getParameter("passwd");
+		String userId = request.getParameter("userId");
+		String major = request.getParameter("major");
+		String address = request.getParameter("address");
+		String sex = request.getParameter("sex");
+		String nickName = request.getParameter("nickName");
+		String status = request.getParameter("status");
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("userName", userName);
+		map.put("passwd", passwd);
+		map.put("userId", userId);
+		map.put("major", major);
+		map.put("address", address);
+		map.put("sex", sex);
+		map.put("nickName", nickName);
+		map.put("status", status);
+		System.out.println(map);
+		
+		boolean bool =userService.addUser(map);
+		
+		System.out.println("add:"+bool);
+		
 		return "index";
 	}
 	

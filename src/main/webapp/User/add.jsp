@@ -37,34 +37,46 @@
     </style>
 </head>
 <body>
-<form action="index.jsp" method="post" class="definewidth m20">
+<form action="addUser" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="username"/></td>
+        <td><input type="text" name="userName"/></td>
     </tr>
     <tr>
         <td class="tableleft">密码</td>
-        <td><input type="password" name="password"/></td>
+        <td><input type="password" name="passwd"/></td>
     </tr>
     <tr>
-        <td class="tableleft">真实姓名</td>
-        <td><input type="text" name="realname"/></td>
+        <td class="tableleft">员工编号</td>
+        <td><input type="text" name="userId"/></td>
     </tr>
     <tr>
-        <td class="tableleft">邮箱</td>
-        <td><input type="text" name="email"/></td>
+        <td class="tableleft">专业</td>
+        <td><input type="text" name="major"/></td>
     </tr>
     <tr>
-        <td class="tableleft">状态</td>
+        <td class="tableleft">地址</td>
+        <td><input type="text" name="address"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">昵称</td>
+        <td><input type="text" name="nickName"/></td>
+    </tr>
+    <tr>
+        <td class="tableleft">性别</td>
         <td>
-            <input type="radio" name="status" value="1" checked/> 启用
-           <input type="radio" name="status" value="0"/> 禁用
+            <input type="radio" name="sex" value="男" checked/> 男
+           <input type="radio" name="sex" value="女"/> 女
         </td>
     </tr>
     <tr>
-        <td class="tableleft">角色</td>
-        <td>{$role_checkbox}</td>
+        <td class="tableleft">身份</td>
+        <td>
+            <input type="radio" name="status" value="0" checked/> 学生
+           <input type="radio" name="status" value="1"/> 教师
+           <input type="radio" name="status" value="2"/> 管理员
+        </td>
     </tr>
     <tr>
         <td class="tableleft"></td>
