@@ -18,7 +18,7 @@
     </div>
 <%
 String loginUser = (String)request.getSession().getAttribute("loginUser");
-/* if(loginUser==null)loginUser="车健"; */
+ if(loginUser==null)loginUser="车健"; 
 if(loginUser==null){
 	request.setAttribute("message","请先登录");
 	request.getRequestDispatcher("/Public/login.jsp").forward(request,response);

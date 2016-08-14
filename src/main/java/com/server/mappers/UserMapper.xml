@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.mappers.UserMapper">
+
+<select id="selectStudent" parameterType="map" resultType="com.server.model.Student">
+	select * from t_student
+	<where>
+		<if test=" str != null and str != '' ">
+			studentNum LIKE '%${str}%' or userName LIKE '%${str}%'
+		</if>	
+	</where>	 
+</select>
+
+<select id="selectTeacher" parameterType="map" resultType="com.server.model.Teacher">
+	select * from  t_teacher 
+	<where>
+		<if test=" str != null and str != '' ">
+			teacherId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'
+		</if>	
+	</where>
+</select>
+
+<select id="selectAdmin" parameterType="com.server.model.Admin" resultType="com.server.model.Admin">
+	select * from  t_admin 
+	<where>
+		<if test=" str != null and str != '' ">
+			adminId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'
+		</if>	
+	</where>
+</select>
+
+</mapper>

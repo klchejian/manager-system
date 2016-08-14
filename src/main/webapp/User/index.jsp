@@ -40,9 +40,13 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index" method="get">    
+<form class="form-inline definewidth m20" action="searchUser" method="get">    
     用户名称：
-    <input type="text" name="username" id="username"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
+    <input type="text" name="str" id="str"class="abc input-default" placeholder="模糊搜索" value="">&nbsp;&nbsp;
+    <input type="radio" name="status" value="0" checked/> 学生
+        <input type="radio" name="status" value="1"/> 教师
+        <input type="radio" name="status" value="2"/> 管理员  
+        <input type="radio" name="status" value="3"/> 所有  
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增用户</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10">

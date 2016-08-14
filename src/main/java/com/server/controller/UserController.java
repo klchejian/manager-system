@@ -1,6 +1,7 @@
 package com.server.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.server.model.Student;
-import com.server.service.PublicService;
+import com.server.service.UserService;
 
 
 @Controller
@@ -19,8 +20,8 @@ public class UserController{
 
 //	private static Log logger = LogFactory.getLog(UserController.class);
 
-	@Resource(name="publicService")
-	private PublicService publicService;
+	@Resource(name="userService")
+	private UserService userService;
 	
 	@RequestMapping("/index")
 	public String index(HttpServletRequest request,HttpServletResponse response) throws Exception{
@@ -40,13 +41,20 @@ public class UserController{
 		return "index";
 	}
 	
-//	@RequestMapping("/signout")
-//	public void signout(HttpServletRequest request,HttpServletResponse response) throws Exception{
-//		request.getSession().invalidate();
-//		RequestDispatcher view = request.getRequestDispatcher("Public/login.jsp");
-//		view.forward(request, response);
-//	}
+	@RequestMapping("/searchUser")
+	public String searchUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
+		
+		String str = request.getParameter("str");
+		String status = request.getParameter("status");
+		System.out.println("str:"+str+" status:"+status);
+		
+		HashMap<String,String> map = userService.selectUser("stu");
+		
+		System.out.println("模糊搜索student:"+map);
+
+		
+		request.setAttribute("userList", map);
+		return "index";
+	}
 	
-
-
 }
