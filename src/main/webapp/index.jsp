@@ -29,9 +29,22 @@ if(loginUser==null){
 </div>
 <div class="content">
     <div class="dl-main-nav">
+    
         <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+        
         <ul id="J_Nav"  class="nav-list ks-clear">
-            <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">业务管理</div></li>
+            <li class="nav-item dl-selected">
+            	<div class="nav-item-inner nav-home">系统管理</div>
+            </li>		
+            <li class="nav-item dl-selected">
+            	<div class="nav-item-inner nav-order">业务管理</div>
+            </li>
+            <li class="nav-item dl-selected">
+            	<div class="nav-item-inner nav-home">学生业务</div>
+            </li>
+            <li class="nav-item dl-selected">
+            	<div class="nav-item-inner nav-order">系统业务</div>
+            </li>
 
         </ul>
     </div>
@@ -52,34 +65,46 @@ if(loginUser==null){
                        	          {
                        	        	  text:'系统管理',
                        	        	  items:[
-                       	        	          {id:'12',text:'机构管理',href:'Node/index.jsp'},
-                       	        	          {id:'3',text:'角色管理',href:'Role/index.jsp'},
-                       	        	          {id:'4',text:'用户管理',href:'User/index.jsp'},
-                       	        	          {id:'6',text:'菜单管理',href:'Menu/index.jsp'}
+                       	        	          {id:'1',text:'机构管理',href:'Node/index.jsp'},
+                       	        	          {id:'2',text:'角色管理',href:'Role/index.jsp'},
+                       	        	          {id:'3',text:'用户管理',href:'User/index.jsp'},
+                       	        	          {id:'4',text:'菜单管理',href:'Menu/index.jsp'}
                        	        	        ]
                        	          }
                        	        ]
                         },
                         {
-                        	id:'7',
-                        	homePage : '9',
+                        	id:'2',
+                        	homePage : '1',
                         	menu:[
                         	       {
                         	    	  text:'业务管理',
                         	    	  items:[
-                        	    	         {id:'9',text:'查询业务',href:'Node/index.jsp'}
+                        	    	         {id:'1',text:'查询业务',href:'Node/index.jsp'}
                         	    	        ]
                         	       }
                         	     ]
                         },
                         {
-                        	id:'7',
-                        	homePage : '9',
+                        	id:'3',
+                        	homePage : '1',
                         	menu:[
                         	       {
-                        	    	  text:'systemMana',
+                        	    	  text:'学生业务',
                         	    	  items:[
-                        	    	         {id:'9',text:'查询业务',href:'Node/index.jsp'}
+                        	    	         {id:'1',text:'查询业务',href:'Node/index.jsp'}
+                        	    	        ]
+                        	       }
+                        	     ]
+                        },
+                        {
+                        	id:'4',
+                        	homePage : '1',
+                        	menu:[
+                        	       {
+                        	    	  text:'系统业务',
+                        	    	  items:[
+                        	    	         {id:'1',text:'人员管理',href:'User/index.jsp'}
                         	    	        ]
                         	       }
                         	     ]

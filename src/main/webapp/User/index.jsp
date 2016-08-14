@@ -1,5 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.server.model.Student"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,7 +40,7 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index.jsp" method="get">    
+<form class="form-inline definewidth m20" action="index" method="get">    
     用户名称：
     <input type="text" name="username" id="username"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增用户</button>
@@ -52,6 +55,7 @@
         <th>操作</th>
     </tr>
     </thead>
+    
 	     <tr>
             <td>2</td>
             <td>admin</td>
@@ -61,6 +65,31 @@
                 <a href="edit.jsp">编辑</a>                
             </td>
         </tr>	
+        
+        <c:forEach var="user" items="${requestScope.userList}" varStatus="foo">
+        <tr>
+        <td>${foo.index }</td>
+        <td>${user.userName }</td>
+        <td>${user.sex }</td>
+        <td>${user.major }</td>
+        <td><a href="edit.jsp">编辑</a></td>
+        </tr>
+        </c:forEach>
+        <%-- <%
+        ArrayList<Student> list = (ArrayList<Student>)request.getAttribute("userList");
+        if(list!=null){
+        for(Student student:list){
+        	%>
+        	<tr>
+        	<td>1</td>
+        	<td>2</td>
+        	<td>3</td>
+        	<td>4</td>
+        	</tr>
+        	<% 
+        }
+        }
+        %> --%>
 </table>
 </body>
 </html>
