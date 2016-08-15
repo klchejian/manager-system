@@ -42,11 +42,42 @@
 <body>
 <form class="form-inline definewidth m20" action="searchUser" method="get">    
     用户名称：
-    <input type="text" name="str" id="str"class="abc input-default" placeholder="模糊搜索" value="">&nbsp;&nbsp;
-    <input type="radio" name="status" value="0" checked/> 学生
-        <input type="radio" name="status" value="1"/> 教师
-        <input type="radio" name="status" value="2"/> 管理员  
-        <input type="radio" name="status" value="3"/> 所有  
+    <input type="text" name="str" id="str"class="abc input-default" placeholder="模糊搜索" value="${str }"/>&nbsp;&nbsp;
+    <c:choose>
+    	<c:when test="${status == '0' }">
+		    <input type="radio" name="status" value="0" checked/> 学生
+		    <input type="radio" name="status" value="1"/> 教师
+		    <input type="radio" name="status" value="2"/> 管理员  
+		    <input type="radio" name="status" value="3"/> 所有  
+    	</c:when>
+    	<c:when test="${status == '1' }">
+		    <input type="radio" name="status" value="0" /> 学生
+		    <input type="radio" name="status" value="1" checked/> 教师
+		    <input type="radio" name="status" value="2"/> 管理员  
+		    <input type="radio" name="status" value="3"/> 所有  
+    	</c:when>
+    	<c:when test="${status == '2' }">
+		    <input type="radio" name="status" value="0" /> 学生
+		    <input type="radio" name="status" value="1"/> 教师
+		    <input type="radio" name="status" value="2" checked/> 管理员  
+		    <input type="radio" name="status" value="3"/> 所有  
+    	</c:when>
+    	<c:when test="${status == '3' }">
+		    <input type="radio" name="status" value="0"/> 学生
+		    <input type="radio" name="status" value="1"/> 教师
+		    <input type="radio" name="status" value="2"/> 管理员  
+		    <input type="radio" name="status" value="3" checked/> 所有  
+    	</c:when>
+    	<c:otherwise>
+		    <input type="radio" name="status" value="0" /> 学生
+		    <input type="radio" name="status" value="1"/> 教师
+		    <input type="radio" name="status" value="2"/> 管理员  
+		    <input type="radio" name="status" value="3" checked/> 所有  
+    	</c:otherwise>
+    </c:choose>
+    
+    
+    
     <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增用户</button>
 </form>
 <table class="table table-bordered table-hover definewidth m10">
@@ -77,8 +108,8 @@
         <td>${user.userId }</td>
         <td>${user.userName }</td>
         <td>${user.nickName }</td>
-        <td>${user.major } ${user.address }</td>
-        <td><a href="edit.jsp">编辑</a></td>
+        <td>(${user.userType=='0' ? '学生':(user.userType == '1' ? '教师' : '管理员') })${user.major } ${user.address }</td>
+        <td><a href="delete?userType=${user.userType }&userId=${user.userId }&str=${str }&status=${status }">删除</a></td>
         </tr>
         </c:forEach>
 </table>

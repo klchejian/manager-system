@@ -1,13 +1,18 @@
 package com.server.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.server.model.Student;
@@ -43,23 +48,27 @@ public class UserController{
 	
 	@RequestMapping("/searchUser")
 	public String searchUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8"); 
 		String str = request.getParameter("str");
 		String status = request.getParameter("status");
 		System.out.println("str:"+str+" status:"+status);
+		HashMap<String,String> map = new HashMap<String, String>();
+		map.put("str", str);
+		map.put("status", status);
 		
-		ArrayList<HashMap<String, String>> map = userService.selectUser(str);
 		
-		System.out.println("模糊搜索users:"+map);
+		ArrayList<HashMap<String, String>> resMap = userService.selectUser(map);
+		
+		System.out.println("模糊搜索users:"+resMap);
 
 		
-		request.setAttribute("userList", map);
+		request.setAttribute("str", str);
+		request.setAttribute("status", status);
+		request.setAttribute("userList", resMap);
 		return "index";
 	}
 	
 	@RequestMapping("/addUser")
-	public String addUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
-		request.setCharacterEncoding("utf-8"); 
+	public String addUser(HttpServletRequest request,HttpServletResponse response){
 		String userName = request.getParameter("userName");
 		String passwd = request.getParameter("passwd");
 		String userId = request.getParameter("userId");
@@ -79,11 +88,64 @@ public class UserController{
 		map.put("status", status);
 		System.out.println(map);
 		
-		boolean bool =userService.addUser(map);
-		
-		System.out.println("add:"+bool);
+		boolean bool;
+		try {
+			bool = userService.addUser(map);
+		} catch (DuplicateKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			request.setAttribute("message", "ID或用户名已存在");
+			request.setAttribute("userName", userName);
+			request.setAttribute("passwd", passwd);
+			request.setAttribute("userId", userId);
+			request.setAttribute("major", major);
+			request.setAttribute("address", address);
+			request.setAttribute("sex", sex);
+			request.setAttribute("nickName", nickName);
+			request.setAttribute("status", status);
+			return "add";
+		}
 		
 		return "index";
+	}
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request,HttpServletResponse response){
+		String userId = request.getParameter("userId");
+		String userType = request.getParameter("userType");
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("userId", userId);
+		map.put("userType", userType);
+		System.out.println(map);
+		userService.deleteUser(map);
+//		boolean bool;
+//		try {
+//			bool = userService.addUser(map);
+//		} catch (DuplicateKeyException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			request.setAttribute("message", "ID或用户名已存在");
+//			request.setAttribute("userName", userName);
+//			request.setAttribute("passwd", passwd);
+//			request.setAttribute("userId", userId);
+//			request.setAttribute("major", major);
+//			request.setAttribute("address", address);
+//			request.setAttribute("sex", sex);
+//			request.setAttribute("nickName", nickName);
+//			request.setAttribute("status", status);
+//			return "add";
+//		}
+		RequestDispatcher view = request.getRequestDispatcher("searchUser");
+		try {
+			view.forward(request,response);
+		} catch (ServletException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+//		return "searchUser";
 	}
 	
 }

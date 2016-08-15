@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,17 +22,32 @@ public class UserService {
 	@Resource
 	private UserMapper userMapper; 
 	
-	public  ArrayList<HashMap<String, String>> selectUser(String str){
-		HashMap<String,String> map = new HashMap<String, String>();
-		map.put("str", str);
-		ArrayList<HashMap<String, String>> userLists =userMapper.selectStudent(map);
-		userLists.addAll(userMapper.selectTeacher(map));
-		userLists.addAll(userMapper.selectAdmin(map));
+	public  ArrayList<HashMap<String, String>> selectUser(HashMap<String, String> map){
+		String status = map.get("status");
+		ArrayList<HashMap<String, String>> userLists = new ArrayList<HashMap<String,String>>();
+		switch (status) {
+		case "0":
+			userLists.addAll(userMapper.selectStudent(map));
+			break;
+		case "1":
+			userLists.addAll(userMapper.selectTeacher(map));
+			break;
+		case "2":
+			userLists.addAll(userMapper.selectAdmin(map));
+			break;
+		case "3":
+			userLists.addAll(userMapper.selectStudent(map));
+			userLists.addAll(userMapper.selectTeacher(map));
+			userLists.addAll(userMapper.selectAdmin(map));
+			break;
+		default:
+			break;
+		}
 		
 		return userLists;
 	}
 	
-	public  boolean addUser(HashMap<String, String> map){
+	public  boolean addUser(HashMap<String, String> map) throws DuplicateKeyException{
 		String userName = map.get("userName");
 		String passwd = map.get("passwd");
 		String userId = map.get("userId");
@@ -75,5 +91,27 @@ public class UserService {
 		}
 		
 		return true;
+	}
+	
+	public  int deleteUser(HashMap<String, String> map){
+		String userType = map.get("userType");
+		String userId = map.get("userId");
+		int res = 0;
+		switch (userType) {
+		case "0":
+			res = userMapper.deleteStudentById(map);
+			break;
+		case "1":
+			res = userMapper.deleteTeacherById(map);
+			break;
+		case "2":
+			res = userMapper.deleteAdminById(map);
+			break;
+		default:
+			res = 0;
+			break;
+		}
+		
+		return res;
 	}
 }

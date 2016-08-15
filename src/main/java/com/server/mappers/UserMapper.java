@@ -21,5 +21,11 @@ public interface UserMapper {
 	
 	public int insertAdmin(Admin admin);
 	
+	public int deleteStudentById(HashMap<String,String> map);
+	
+	public int deleteTeacherById(HashMap<String,String> map);
+	
+	public int deleteAdminById(HashMap<String,String> map);
+	
 	
 }

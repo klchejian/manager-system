@@ -35,33 +35,45 @@
 
 
     </style>
+    
+    <script language="javascript">
+function CheckForm()
+{
+if (document.form.name.value.length == 0) {
+   alert("请输入您姓名!");
+   document.form.name.focus();
+   return false;
+}
+   return true;
+}
+</script>
 </head>
 <body>
 <form action="addUser" method="post" class="definewidth m20">
 <table class="table table-bordered table-hover definewidth m10">
     <tr>
         <td width="10%" class="tableleft">登录名</td>
-        <td><input type="text" name="userName"/></td>
+        <td><input type="text" name="userName" value="${userName}"/></td>
     </tr>
     <tr>
         <td class="tableleft">密码</td>
-        <td><input type="password" name="passwd"/></td>
+        <td><input type="password" name="passwd" value="${passwd}"/></td>
     </tr>
     <tr>
         <td class="tableleft">员工编号</td>
-        <td><input type="text" name="userId"/></td>
+        <td><input type="text" name="userId" value="${userId}"/></td>
     </tr>
     <tr>
         <td class="tableleft">专业</td>
-        <td><input type="text" name="major"/></td>
+        <td><input type="text" name="major" value="${major}"/></td>
     </tr>
     <tr>
         <td class="tableleft">地址</td>
-        <td><input type="text" name="address"/></td>
+        <td><input type="text" name="address" value="${address}"/></td>
     </tr>
     <tr>
         <td class="tableleft">昵称</td>
-        <td><input type="text" name="nickName"/></td>
+        <td><input type="text" name="nickName" value="${nickName}"/></td>
     </tr>
     <tr>
         <td class="tableleft">性别</td>
@@ -82,6 +94,7 @@
         <td class="tableleft"></td>
         <td>
             <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" id="backid">返回列表</button>
+            <a style="color:red">${message}</a>
         </td>
     </tr>
 </table>

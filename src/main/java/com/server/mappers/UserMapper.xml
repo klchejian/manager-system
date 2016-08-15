@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.server.mappers.UserMapper">
 
 <select id="selectStudent" parameterType="map" resultType="map">
-	select idNumber as userId,studentNum as userName,userName as nickName,major,address from t_student
+	select idNumber as userId,studentNum as userName,userName as nickName,major,address,0 as userType from t_student
 	<where>
 		<if test=" str != null and str != '' ">
 			studentNum LIKE '%${str}%' or userName LIKE '%${str}%'
@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <select id="selectTeacher" parameterType="map" resultType="map">
-	select teacherId as userId,userName,nickName from  t_teacher 
+	select teacherId as userId,userName,nickName,1 as userType from  t_teacher 
 	<where>
 		<if test=" str != null and str != '' ">
 			teacherId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'
@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 </select>
 
 <select id="selectAdmin" parameterType="map" resultType="map">
-	select adminId as userId,userName,nickName from  t_admin 
+	select adminId as userId,userName,nickName,2 as userType from  t_admin 
 	<where>
 		<if test=" str != null and str != '' ">
 			adminId LIKE '%${str}%' or nickName LIKE '%${str}%' or userName LIKE '%${str}%'
@@ -42,5 +42,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <insert id = "insertAdmin" parameterType="Admin">
 	insert into t_admin values(#{adminId},#{userName},#{passwd},#{nickName})
 </insert>
+
+<delete id="deleteStudentById" parameterType="map">
+	delete from t_student where studentNum=#{userId}
+</delete>
+
+<delete id="deleteTeacherById" parameterType="map">
+	delete from t_teacher where teacherId=#{userId}
+</delete>
+
+<delete id="deleteAdminById" parameterType="map">
+	delete from t_admin where adminId=#{userId}
+</delete>
 
 </mapper>
