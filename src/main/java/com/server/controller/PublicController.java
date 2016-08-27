@@ -1,5 +1,7 @@
 package com.server.controller;
 
+import java.util.HashMap;
+
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.server.service.PublicService;
-import com.server.service.TestService;
 
 
 @Controller
@@ -39,7 +40,11 @@ public class PublicController{
 			RequestDispatcher view = request.getRequestDispatcher("Public/login.jsp");
 			view.forward(request, response);
 		}else{
-			request.getSession().setAttribute("loginUser", loginUser);
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("userId", username);
+			map.put("nickName", loginUser);
+			map.put("status", status);
+			request.getSession().setAttribute("loginUser", map);
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}

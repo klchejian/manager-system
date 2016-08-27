@@ -46,13 +46,10 @@ public class CourseController{
 	@RequestMapping("/searchCourse")
 	public String searchUser(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		String str = request.getParameter("str");
-		System.out.println("str:"+str);
 		HashMap<String,String> map = new HashMap<String, String>();
 		map.put("str", str);
 		
 		ArrayList<HashMap<String, String>> resMap = courseService.selectCourse(map);
-		
-		System.out.println("模糊搜索courses:"+resMap);
 		
 		request.setAttribute("str", str);
 		request.setAttribute("courseList", resMap);

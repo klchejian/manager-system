@@ -17,14 +17,15 @@
         <!--<img src="/chinapost/Public/assets/img/top.png">-->
     </div>
 <%
-String loginUser = (String)request.getSession().getAttribute("loginUser");
- if(loginUser==null)loginUser="车健"; 
-if(loginUser==null){
+Object object = request.getSession().getAttribute("loginUser");
+if(object==null){
 	request.setAttribute("message","请先登录");
 	request.getRequestDispatcher("/Public/login.jsp").forward(request,response);
+	return;
 }
+java.util.HashMap<String, String> loginUser = (java.util.HashMap<String, String>)object;
 %>
-    <div class="dl-log">欢迎您，<span class="dl-log-user"><%=loginUser %></span><a href="signout" title="退出系统" class="dl-log-quit">[退出]</a>
+    <div class="dl-log">欢迎您，<span class="dl-log-user"><%=loginUser.get("nickName") %></span><a href="signout" title="退出系统" class="dl-log-quit">[退出]</a>
     </div>
 </div>
 <div class="content">
@@ -92,7 +93,8 @@ if(loginUser==null){
                         	       {
                         	    	  text:'学生业务',
                         	    	  items:[
-                        	    	         {id:'1',text:'查询业务',href:'Node/index.jsp'}
+                        	    	         {id:'1',text:'学生选课',href:'CCourse/index'},
+                        	    	         {id:'2',text:'成绩录入',href:'GradeIn/index'}
                         	    	        ]
                         	       }
                         	     ]

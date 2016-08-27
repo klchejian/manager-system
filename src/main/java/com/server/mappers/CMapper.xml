@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.mappers.CMapper">
+
+<insert id = "chooseCourse" parameterType="map">
+	insert into t_courseselect(studentNum,courseId,courseName) values(#{studentNum},#{courseId},#{courseName})
+</insert>
+
+<select id="getSelectedCourse" parameterType="map" resultType="string">
+	select courseId from t_courseselect where studentNum = #{studentNum}
+</select>
+
+<delete id="delete" parameterType="map">
+	delete from t_courseselect where courseId = #{courseId} and studentNum = #{studentNum}
+	</delete>
+
+</mapper>

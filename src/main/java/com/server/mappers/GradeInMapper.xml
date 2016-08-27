@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.mappers.GradeInMapper">
+
+<select id="getMyCourse" parameterType="map" resultType="map">
+	SELECT a.*,b.userName,b.nickName FROM t_course a LEFT JOIN t_teacher b ON a.teacherId=b.teacherId 
+	<where>
+		<if test=" 1 != 2 ">
+			AND userName = #{userName}
+		</if>	
+		<if test=" str != null and str != '' ">
+			AND courseName LIKE '%${str}%'
+		</if>	
+	</where>
+</select>
+
+</mapper>
