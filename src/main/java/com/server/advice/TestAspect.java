@@ -23,6 +23,7 @@ public class TestAspect {
 		System.out.println("doAroundBefore");
 		Object retVal=pjp.proceed();
 		System.out.println("doAroundAfter");
+		System.out.println("return : "+retVal);
 		return retVal;
 	}
 }

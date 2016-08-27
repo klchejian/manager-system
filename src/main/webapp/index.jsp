@@ -104,7 +104,8 @@ if(loginUser==null){
                         	       {
                         	    	  text:'系统业务',
                         	    	  items:[
-                        	    	         {id:'1',text:'人员管理',href:'User/index.jsp'}
+                        	    	         {id:'1',text:'人员管理',href:'User/index.jsp'},
+                        	    	         {id:'2',text:'课程管理',href:'Course/index.jsp'}
                         	    	        ]
                         	       }
                         	     ]
