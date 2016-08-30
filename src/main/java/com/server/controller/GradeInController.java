@@ -44,19 +44,6 @@ public class GradeInController{
 		map.put("courseId", courseId);
 		request.setAttribute("str", str);
 		ArrayList<HashMap<String,String>> courseList = gradeInService.getCourseUsers(map);
-
-		/*
-		courseList.clear();
-		for(int i = 0 ; i < 11 ; i++){
-			HashMap<String, String> e = new HashMap<String, String>();
-			e.put("courseId", i+" 501 "+i);
-			e.put("courseName", i+"courseName"+i);
-			e.put("studentNum", i+"studentNum"+i);
-			e.put("studentName", i+"studentName"+i);	
-			e.put("grade", i+"grade"+i);
-			courseList.add(e);
-		}
-		*/
 		
 		request.setAttribute("courseList", courseList);
 		return "input";
