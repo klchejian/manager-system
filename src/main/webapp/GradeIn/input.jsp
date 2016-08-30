@@ -13,12 +13,50 @@
     <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
     <link rel="stylesheet" type="text/css" href="../Css/style.css" />
     <script type="text/javascript" src="../Js/jquery.js"></script>
-    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <!-- <script type="text/javascript" src="../Js/jquery.sorted.js"></script> -->
     <script type="text/javascript" src="../Js/bootstrap.js"></script>
     <script type="text/javascript" src="../Js/ckform.js"></script>
     <script type="text/javascript" src="../Js/common.js"></script>
 
  
+<script type="text/javascript">
+	function updateGrade() {
+				var table = document.getElementById("gradeTable")
+				var dataNum = table.rows.length;
+				var gradeList = [];
+				for(var i = 1 ; i < dataNum ; i++){
+					
+					var courseId = table.rows[i].cells[5].textContent;
+					var studentNum = table.rows[i].cells[2].textContent;
+					var grade = table.rows[i].cells[4].getElementsByTagName("input")[0].value;
+					var grades = {
+						"courseId":courseId,
+						"studentNum":studentNum,							
+						"grade":grade
+					};
+					gradeList.push(grades)
+				}
+				
+				  $.ajax({
+					url : "gradeIn",
+					data : {
+						"gradeList" : JSON.stringify(gradeList)
+					},
+					dataType : "json",
+					/* contentType : "application/json", */
+					type : 'post',
+					success : function() { 
+						 window.location.href = '/index.jsp';
+					},
+					error:function(XMLHttpRequest, textStatus, errorThrown) {
+						 alert(XMLHttpRequest.status);
+						 alert(XMLHttpRequest.readyState);
+						 alert(textStatus);
+					}
+				})  
+	}
+	
+</script>
 
     <style type="text/css">
         body {
@@ -41,19 +79,18 @@
     </style>
 </head>
 <body>
-<form class="form-inline definewidth m20" action="index" method="get">    
-    课程名称：
-    <input type="text" name="str" id="str"class="abc input-default" placeholder="模糊搜索" value="${str }"/>&nbsp;&nbsp;
-    
-    
-    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; 
-</form>
-<table class="table table-bordered table-hover definewidth m10">
+<table class="form-inline definewidth m20" >    
+    &nbsp;&nbsp; <button class="btn btn-primary" onclick="updateGrade()">提交</button>
+</table>
+<table id="gradeTable" class="table table-bordered table-hover definewidth m10">
     <thead>
     <tr>
         <th>序号</th>
         <th>课程名称</th>
-        <th>操作</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>成绩</th>
+        <th style="display:none"></th>
     </tr>
     </thead>
         
@@ -61,7 +98,11 @@
         <tr>
         <td>${foo.index+1 }</td>
         <td>${course.courseName }</td>
-        <td><a href="input?str=${str }&courseId=${course.courseId }&courseName=${course.courseName }">成绩录入</a></td>
+        <td>${course.studentNum }</td>
+        <td>${course.studentName }</td>
+        <td><input value="${course.grade }"/></td>
+        <td style="display:none">${course.courseId }</td>
+        
         </tr>
         </c:forEach>
 </table>

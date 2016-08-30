@@ -16,4 +16,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</where>
 </select>
 
+<select id="getCourseUsers" parameterType="map" resultType="map">
+	SELECT a.*,b.userName as studentName FROM t_courseselect a LEFT JOIN t_student b ON a.studentNum=b.studentNum 
+	<where>
+		<if test=" 1 != 2 ">
+			AND a.courseId = #{courseId}
+		</if>	
+		<if test=" str != null and str != '' ">
+			AND (studentNum LIKE '%${str}%' or b.userName LIKE '%${str}%')
+		</if>	
+	</where>
+</select>
+
+<update id="gradeIn" parameterType="map">
+	update t_courseselect set grade = #{grade} where courseId = #{courseId} and studentNum = #{studentNum}
+</update>
+
 </mapper>
