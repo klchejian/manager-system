@@ -46,7 +46,7 @@
 					/* contentType : "application/json", */
 					type : 'post',
 					success : function() { 
-						 window.location.href = '/index.jsp';
+						 window.location.href = 'index';
 					},
 					error:function(XMLHttpRequest, textStatus, errorThrown) {
 						 alert(XMLHttpRequest.status);

@@ -1,12 +1,10 @@
 package com.server.controller;
 
-import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -80,11 +78,25 @@ public class GradeInController{
 			
 		}
 		
-		request.setAttribute("courseId", courseId);
-		response.setContentType("json");
-		RequestDispatcher view = request.getRequestDispatcher("getCourseUsers");
-//		try {
-			view.forward(request, response);
+//		request.setAttribute("courseId", courseId);
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		PrintWriter writer = null;
+		try {
+			writer = response.getWriter();
+			writer.println(courseId);
+			writer.flush();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally{
+			if(null != writer){
+				writer.close();
+			}
+		}
+//		response.setContentType("json");
+//		RequestDispatcher view = request.getRequestDispatcher("getCourseUsers");
+////		try {
+//			view.forward(request, response);
 //		} catch (ServletException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
